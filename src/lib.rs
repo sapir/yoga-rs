@@ -934,21 +934,21 @@ impl Node {
 		unsafe { internal::YGNodeSetContext(self.inner_node, raw) }
 	}
 
-	pub fn get_context(node_ref: &NodeRef) -> Option<&Box<Any>> {
+	pub fn get_context(node_ref: &NodeRef) -> Option<&Box<dyn Any>> {
 		let raw = unsafe { internal::YGNodeGetContext(*node_ref) };
 		Context::get_inner_ref(raw)
 	}
 
-	pub fn get_context_mut(node_ref: &NodeRef) -> Option<&mut Box<Any>> {
+	pub fn get_context_mut(node_ref: &NodeRef) -> Option<&mut Box<dyn Any>> {
 		let raw = unsafe { internal::YGNodeGetContext(*node_ref) };
 		Context::get_inner_mut(raw)
 	}
 
-	pub fn get_own_context(&self) -> Option<&Box<Any>> {
+	pub fn get_own_context(&self) -> Option<&Box<dyn Any>> {
 		Node::get_context(&self.inner_node)
 	}
 
-	pub fn get_own_context_mut(&self) -> Option<&mut Box<Any>> {
+	pub fn get_own_context_mut(&self) -> Option<&mut Box<dyn Any>> {
 		Node::get_context_mut(&self.inner_node)
 	}
 

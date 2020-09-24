@@ -1,22 +1,22 @@
-pub use ffi_types::align::*;
-pub use ffi_types::config_ref::*;
-pub use ffi_types::dimension::*;
-pub use ffi_types::direction::*;
-pub use ffi_types::display::*;
-pub use ffi_types::edge::*;
-pub use ffi_types::flex_direction::*;
-pub use ffi_types::justify::*;
-pub use ffi_types::log_level::*;
-pub use ffi_types::measure_mode::*;
-pub use ffi_types::node_ref::*;
-pub use ffi_types::node_type::*;
-pub use ffi_types::overflow::*;
-pub use ffi_types::position_type::*;
-pub use ffi_types::print_options::*;
-pub use ffi_types::size::*;
-pub use ffi_types::style_unit::*;
-pub use ffi_types::undefined::*;
-pub use ffi_types::wrap::*;
+pub use crate::ffi_types::align::*;
+pub use crate::ffi_types::config_ref::*;
+pub use crate::ffi_types::dimension::*;
+pub use crate::ffi_types::direction::*;
+pub use crate::ffi_types::display::*;
+pub use crate::ffi_types::edge::*;
+pub use crate::ffi_types::flex_direction::*;
+pub use crate::ffi_types::justify::*;
+pub use crate::ffi_types::log_level::*;
+pub use crate::ffi_types::measure_mode::*;
+pub use crate::ffi_types::node_ref::*;
+pub use crate::ffi_types::node_type::*;
+pub use crate::ffi_types::overflow::*;
+pub use crate::ffi_types::position_type::*;
+pub use crate::ffi_types::print_options::*;
+pub use crate::ffi_types::size::*;
+pub use crate::ffi_types::style_unit::*;
+pub use crate::ffi_types::undefined::*;
+pub use crate::ffi_types::wrap::*;
 use ordered_float::OrderedFloat;
 use std::any::Any;
 use std::ops::Deref;
@@ -130,7 +130,7 @@ impl Layout {
 }
 
 #[derive(Debug)]
-pub struct Context(Box<Any>);
+pub struct Context(Box<dyn Any>);
 
 impl Context {
 	pub fn new<T: Any>(value: T) -> Self {
@@ -142,18 +142,18 @@ impl Context {
 		Box::into_raw(Box::new(self.0)) as *mut c_void
 	}
 
-	pub(crate) fn get_inner_ref<'a>(raw: *mut c_void) -> Option<&'a Box<Any>> {
-		let ptr = raw as *const Box<Any>;
+	pub(crate) fn get_inner_ref<'a>(raw: *mut c_void) -> Option<&'a Box<dyn Any>> {
+		let ptr = raw as *const Box<dyn Any>;
 		unsafe { ptr.as_ref() }
 	}
 
-	pub(crate) fn get_inner_mut<'a>(raw: *mut c_void) -> Option<&'a mut Box<Any>> {
-		let ptr = raw as *mut Box<Any>;
+	pub(crate) fn get_inner_mut<'a>(raw: *mut c_void) -> Option<&'a mut Box<dyn Any>> {
+		let ptr = raw as *mut Box<dyn Any>;
 		unsafe { ptr.as_mut() }
 	}
 
 	pub(crate) fn drop_raw(raw: *mut c_void) {
-		let ptr = raw as *mut Box<Any>;
+		let ptr = raw as *mut Box<dyn Any>;
 		if !ptr.is_null() {
 			unsafe {
 				Box::from_raw(ptr);
@@ -163,8 +163,8 @@ impl Context {
 }
 
 impl Deref for Context {
-	type Target = Box<Any>;
-	fn deref(&self) -> &Box<Any> {
+	type Target = Box<dyn Any>;
+	fn deref(&self) -> &Box<dyn Any> {
 		&self.0
 	}
 }
