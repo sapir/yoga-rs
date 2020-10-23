@@ -5,7 +5,20 @@ use bindgen::RustTarget;
 use cc::Build;
 use std::env;
 use std::path::PathBuf;
-use std::process::Command;
+use std::process::{Command, Stdio};
+
+fn apple_sdk_root(sdk: &str) -> String {
+	let sdk_path = Command::new("xcrun")
+		.arg("--show-sdk-path")
+		.arg("--sdk")
+		.arg(sdk)
+		.stderr(Stdio::inherit())
+		.output()
+		.unwrap()
+		.stdout;
+
+	String::from_utf8(sdk_path).unwrap().trim().to_owned()
+}
 
 fn main() {
 	Command::new("git")
@@ -41,8 +54,24 @@ fn main() {
 		.file("src/yoga/yoga/Yoga.cpp")
 		.compile("libyoga.a");
 
+	let mut args = vec![];
+
+	match env::var("CARGO_CFG_TARGET_ARCH")
+		.ok()
+		.zip(env::var("CARGO_CFG_TARGET_OS").ok())
+	{
+		Some((arch, os)) if arch == "x86_64" && os == "ios" => {
+			args = vec!["-isysroot".to_owned(), apple_sdk_root("iphonesimulator")];
+		}
+		Some((_, os)) if os == "ios" => {
+			args = vec!["-isysroot".to_owned(), apple_sdk_root("iphoneos")];
+		}
+		_ => {}
+	}
+
 	let bindings = bindgen::Builder::default()
 		.rust_target(RustTarget::Stable_1_21)
+		.clang_args(args)
 		.no_convert_floats()
 		.enable_cxx_namespaces()
 		.whitelist_type("YG.*")
