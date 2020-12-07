@@ -30,7 +30,9 @@ fn main() {
 		.status()
 		.expect("Unable to update the submodule repositories");
 
-	Build::new()
+	let mut build = Build::new();
+
+	build
 		.cpp(true)
 		// https://github.com/facebook/yoga/blob/c5f826de8306e5fbe5963f944c75add827e096c3/BUCK#L13
 		.flag("-std=c++1y")
@@ -51,8 +53,13 @@ fn main() {
 		.file("src/yoga/yoga/YGNode.cpp")
 		.file("src/yoga/yoga/YGNodePrint.cpp")
 		.file("src/yoga/yoga/YGStyle.cpp")
-		.file("src/yoga/yoga/Yoga.cpp")
-		.compile("libyoga.a");
+		.file("src/yoga/yoga/Yoga.cpp");
+
+	if env::var("CARGO_CFG_TARGET_OS").unwrap() == "android" {
+		build.cpp_link_stdlib("c++_static");
+	}
+
+	build.compile("libyoga.a");
 
 	let mut args = vec![];
 
