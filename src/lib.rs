@@ -43,7 +43,7 @@ pub mod prelude;
 pub mod traits;
 pub mod types;
 
-use std::any::Any;
+use std::{any::Any, convert::TryInto};
 pub use types::*;
 
 #[repr(C)]
@@ -167,6 +167,17 @@ impl Node {
 	pub fn remove_child(&mut self, child: &mut Node) {
 		unsafe {
 			internal::YGNodeRemoveChild(self.inner_node, child.inner_node);
+		}
+	}
+
+	pub fn set_children(&mut self, children: &[&mut Node]) {
+		unsafe {
+			let children = children.iter().map(|c| c.inner_node).collect::<Vec<_>>();
+			internal::YGNodeSetChildren(
+				self.inner_node,
+				children.as_ptr(),
+				children.len().try_into().unwrap(),
+			);
 		}
 	}
 
