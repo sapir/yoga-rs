@@ -12,6 +12,12 @@ pub enum Justify {
 	SpaceEvenly = 5,
 }
 
+impl Default for Justify {
+    fn default() -> Self {
+        Self::FlexStart
+    }
+}
+
 impl From<Justify> for internal::YGJustify {
 	fn from(j: Justify) -> internal::YGJustify {
 		match j {

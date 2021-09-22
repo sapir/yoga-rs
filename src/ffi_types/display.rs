@@ -8,6 +8,12 @@ pub enum Display {
 	None = 1,
 }
 
+impl Default for Display {
+    fn default() -> Self {
+        Self::Flex
+    }
+}
+
 impl From<Display> for internal::YGDisplay {
 	fn from(d: Display) -> internal::YGDisplay {
 		match d {

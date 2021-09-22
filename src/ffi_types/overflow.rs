@@ -9,6 +9,12 @@ pub enum Overflow {
 	Scroll = 2,
 }
 
+impl Default for Overflow {
+    fn default() -> Self {
+        Self::Visible
+    }
+}
+
 impl From<Overflow> for internal::YGOverflow {
 	fn from(o: Overflow) -> internal::YGOverflow {
 		match o {

@@ -9,6 +9,12 @@ pub enum PositionType {
 	Absolute = 2,
 }
 
+impl Default for PositionType {
+    fn default() -> Self {
+        Self::Static
+    }
+}
+
 impl From<PositionType> for internal::YGPositionType {
 	fn from(p: PositionType) -> internal::YGPositionType {
 		match p {

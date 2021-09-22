@@ -9,6 +9,12 @@ pub enum Direction {
 	RTL = 2,
 }
 
+impl Default for Direction {
+    fn default() -> Self {
+        Self::Inherit
+    }
+}
+
 impl From<Direction> for internal::YGDirection {
 	fn from(d: Direction) -> internal::YGDirection {
 		match d {

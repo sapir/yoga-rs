@@ -8,6 +8,12 @@ pub enum NodeType {
 	Text = 1,
 }
 
+impl Default for NodeType {
+    fn default() -> Self {
+        Self::Default
+    }
+}
+
 impl From<NodeType> for internal::YGNodeType {
 	fn from(n: NodeType) -> internal::YGNodeType {
 		match n {

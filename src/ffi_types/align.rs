@@ -14,6 +14,12 @@ pub enum Align {
 	SpaceAround = 7,
 }
 
+impl Default for Align {
+    fn default() -> Self {
+        Self::Auto
+    }
+}
+
 impl From<Align> for internal::YGAlign {
 	fn from(a: Align) -> internal::YGAlign {
 		match a {
