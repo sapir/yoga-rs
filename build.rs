@@ -49,15 +49,17 @@ fn main() {
 		// https://github.com/facebook/yoga/blob/8a95fbe87874aec9fcd1cabbee8952755949431d/tools/build_defs/oss/yoga_defs.bzl#L66-68
 		.flag("-fPIC")
 		// C++ Files
+		.file("src/yoga/yoga/log.cpp")
 		.file("src/yoga/yoga/Utils.cpp")
 		.file("src/yoga/yoga/YGConfig.cpp")
 		.file("src/yoga/yoga/YGEnums.cpp")
-		.file("src/yoga/yoga/YGFloatOptional.cpp")
 		.file("src/yoga/yoga/YGLayout.cpp")
 		.file("src/yoga/yoga/YGNode.cpp")
 		.file("src/yoga/yoga/YGNodePrint.cpp")
 		.file("src/yoga/yoga/YGStyle.cpp")
-		.file("src/yoga/yoga/Yoga.cpp");
+		.file("src/yoga/yoga/YGValue.cpp")
+		.file("src/yoga/yoga/Yoga.cpp")
+		.file("src/yoga/yoga/event/event.cpp");
 
 	if env::var("CARGO_CFG_TARGET_OS").unwrap() == "android" {
 		build.cpp_link_stdlib("c++_static");
