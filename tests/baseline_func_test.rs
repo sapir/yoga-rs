@@ -1,5 +1,5 @@
 #[macro_use]
-extern crate yoga;
+extern crate polyhorn_yoga as yoga;
 
 use yoga::{Align, Direction, FlexDirection, Node, NodeRef, Undefined};
 use yoga::prelude::*;

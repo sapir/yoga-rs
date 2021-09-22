@@ -29,7 +29,7 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
     value: function () {
       this.push([
         'extern crate ordered_float;',
-        'extern crate yoga;',
+        'extern crate polyhorn_yoga as yoga;',
         '',
         'use yoga::*;',
         ''

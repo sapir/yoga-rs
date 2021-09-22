@@ -1,6 +1,6 @@
 extern crate ordered_float;
 #[macro_use]
-extern crate yoga;
+extern crate polyhorn_yoga as yoga;
 
 use yoga::{Align, Direction, Display, FlexDirection, Node, Undefined};
 use yoga::prelude::*;

@@ -1,4 +1,4 @@
-extern crate yoga;
+extern crate polyhorn_yoga as yoga;
 
 use yoga::{Direction, Node, StyleUnit, Undefined};
 
