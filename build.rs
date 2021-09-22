@@ -34,15 +34,19 @@ fn main() {
 
 	build
 		.cpp(true)
-		// https://github.com/facebook/yoga/blob/c5f826de8306e5fbe5963f944c75add827e096c3/BUCK#L13
-		.flag("-std=c++1y")
-		// https://github.com/facebook/yoga/blob/c5f826de8306e5fbe5963f944c75add827e096c3/yoga_defs.bzl#L49-L56
+		.include("src/yoga")
+		// https://github.com/facebook/yoga/blob/8a95fbe87874aec9fcd1cabbee8952755949431d/tools/build_defs/oss/yoga_defs.bzl#L53-64
 		.flag("-fno-omit-frame-pointer")
 		.flag("-fexceptions")
+		.flag("-fvisibility=hidden")
+		.flag("-ffunction-sections")
+		.flag("-fdata-sections")
 		.flag("-Wall")
-		.flag("-O3")
-		.flag("-ffast-math")
-		// https://github.com/facebook/yoga/blob/c5f826de8306e5fbe5963f944c75add827e096c3/yoga_defs.bzl#L58-L60
+		.flag("-Werror")
+		.flag("-O2")
+		.flag("-std=c++11")
+		.flag("-DYG_ENABLE_EVENTS")
+		// https://github.com/facebook/yoga/blob/8a95fbe87874aec9fcd1cabbee8952755949431d/tools/build_defs/oss/yoga_defs.bzl#L66-68
 		.flag("-fPIC")
 		// C++ Files
 		.file("src/yoga/yoga/Utils.cpp")
