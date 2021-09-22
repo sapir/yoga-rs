@@ -4,7 +4,7 @@ require 'watir'
 require 'fileutils'
 
 caps = Selenium::WebDriver::Remote::Capabilities.chrome(
-  "loggingPrefs"=>{
+  "goog:loggingPrefs"=>{
     "browser"=>"ALL",
     "performance"=>"ALL"
   }

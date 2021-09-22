@@ -1037,6 +1037,7 @@ fn test_justify_content_min_width_with_padding_child_width_greater_than_parent()
 	let mut config = Config::new();
 
 	let mut root = Node::new_with_config(&mut config);
+	root.set_align_content(Align::Stretch);
 	root.set_width(StyleUnit::Point((1000 as f32).into()));
 	root.set_height(StyleUnit::Point((1584 as f32).into()));
 
@@ -1111,10 +1112,11 @@ fn test_justify_content_min_width_with_padding_child_width_greater_than_parent()
 }
 
 #[test]
-fn test_justify_content_min_width_with_padding_child_width_greater_than_parent_1() {
+fn test_justify_content_min_width_with_padding_child_width_lower_than_parent() {
 	let mut config = Config::new();
 
 	let mut root = Node::new_with_config(&mut config);
+	root.set_align_content(Align::Stretch);
 	root.set_width(StyleUnit::Point((1080 as f32).into()));
 	root.set_height(StyleUnit::Point((1584 as f32).into()));
 

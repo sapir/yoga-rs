@@ -120,12 +120,12 @@ fn test_min_height() {
 	assert_eq!(0 as f32, root_child0.get_layout_left());
 	assert_eq!(0 as f32, root_child0.get_layout_top());
 	assert_eq!(100 as f32, root_child0.get_layout_width());
-	assert_eq!(80 as f32, root_child0.get_layout_height());
+	assert_eq!(60 as f32, root_child0.get_layout_height());
 
 	assert_eq!(0 as f32, root_child1.get_layout_left());
-	assert_eq!(80 as f32, root_child1.get_layout_top());
+	assert_eq!(60 as f32, root_child1.get_layout_top());
 	assert_eq!(100 as f32, root_child1.get_layout_width());
-	assert_eq!(20 as f32, root_child1.get_layout_height());
+	assert_eq!(40 as f32, root_child1.get_layout_height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -137,12 +137,12 @@ fn test_min_height() {
 	assert_eq!(0 as f32, root_child0.get_layout_left());
 	assert_eq!(0 as f32, root_child0.get_layout_top());
 	assert_eq!(100 as f32, root_child0.get_layout_width());
-	assert_eq!(80 as f32, root_child0.get_layout_height());
+	assert_eq!(60 as f32, root_child0.get_layout_height());
 
 	assert_eq!(0 as f32, root_child1.get_layout_left());
-	assert_eq!(80 as f32, root_child1.get_layout_top());
+	assert_eq!(60 as f32, root_child1.get_layout_top());
 	assert_eq!(100 as f32, root_child1.get_layout_width());
-	assert_eq!(20 as f32, root_child1.get_layout_height());
+	assert_eq!(40 as f32, root_child1.get_layout_height());
 }
 
 #[test]
@@ -174,12 +174,12 @@ fn test_min_width() {
 
 	assert_eq!(0 as f32, root_child0.get_layout_left());
 	assert_eq!(0 as f32, root_child0.get_layout_top());
-	assert_eq!(80 as f32, root_child0.get_layout_width());
+	assert_eq!(60 as f32, root_child0.get_layout_width());
 	assert_eq!(100 as f32, root_child0.get_layout_height());
 
-	assert_eq!(80 as f32, root_child1.get_layout_left());
+	assert_eq!(60 as f32, root_child1.get_layout_left());
 	assert_eq!(0 as f32, root_child1.get_layout_top());
-	assert_eq!(20 as f32, root_child1.get_layout_width());
+	assert_eq!(40 as f32, root_child1.get_layout_width());
 	assert_eq!(100 as f32, root_child1.get_layout_height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
@@ -189,14 +189,14 @@ fn test_min_width() {
 	assert_eq!(100 as f32, root.get_layout_width());
 	assert_eq!(100 as f32, root.get_layout_height());
 
-	assert_eq!(20 as f32, root_child0.get_layout_left());
+	assert_eq!(40 as f32, root_child0.get_layout_left());
 	assert_eq!(0 as f32, root_child0.get_layout_top());
-	assert_eq!(80 as f32, root_child0.get_layout_width());
+	assert_eq!(60 as f32, root_child0.get_layout_width());
 	assert_eq!(100 as f32, root_child0.get_layout_height());
 
 	assert_eq!(0 as f32, root_child1.get_layout_left());
 	assert_eq!(0 as f32, root_child1.get_layout_top());
-	assert_eq!(20 as f32, root_child1.get_layout_width());
+	assert_eq!(40 as f32, root_child1.get_layout_width());
 	assert_eq!(100 as f32, root_child1.get_layout_height());
 }
 

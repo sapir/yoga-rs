@@ -553,12 +553,12 @@ fn test_flex_wrap_align_stretch_fits_one_row() {
 	assert_eq!(0 as f32, root_child0.get_layout_left());
 	assert_eq!(0 as f32, root_child0.get_layout_top());
 	assert_eq!(50 as f32, root_child0.get_layout_width());
-	assert_eq!(100 as f32, root_child0.get_layout_height());
+	assert_eq!(0 as f32, root_child0.get_layout_height());
 
 	assert_eq!(50 as f32, root_child1.get_layout_left());
 	assert_eq!(0 as f32, root_child1.get_layout_top());
 	assert_eq!(50 as f32, root_child1.get_layout_width());
-	assert_eq!(100 as f32, root_child1.get_layout_height());
+	assert_eq!(0 as f32, root_child1.get_layout_height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -570,12 +570,12 @@ fn test_flex_wrap_align_stretch_fits_one_row() {
 	assert_eq!(100 as f32, root_child0.get_layout_left());
 	assert_eq!(0 as f32, root_child0.get_layout_top());
 	assert_eq!(50 as f32, root_child0.get_layout_width());
-	assert_eq!(100 as f32, root_child0.get_layout_height());
+	assert_eq!(0 as f32, root_child0.get_layout_height());
 
 	assert_eq!(50 as f32, root_child1.get_layout_left());
 	assert_eq!(0 as f32, root_child1.get_layout_top());
 	assert_eq!(50 as f32, root_child1.get_layout_width());
-	assert_eq!(100 as f32, root_child1.get_layout_height());
+	assert_eq!(0 as f32, root_child1.get_layout_height());
 }
 
 #[test]
