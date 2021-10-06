@@ -84,6 +84,7 @@ fn main() {
 
 	let bindings = bindgen::Builder::default()
 		.rust_target(RustTarget::Stable_1_21)
+		.clang_args(["-x", "c++-header"])
 		.clang_args(args)
 		.no_convert_floats()
 		.enable_cxx_namespaces()
