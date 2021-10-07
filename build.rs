@@ -61,8 +61,14 @@ fn main() {
 		.file("src/yoga/yoga/Yoga.cpp")
 		.file("src/yoga/yoga/event/event.cpp");
 
-	if env::var("CARGO_CFG_TARGET_OS").unwrap() == "android" {
-		build.cpp_link_stdlib("c++_static");
+	match env::var("CARGO_CFG_TARGET_OS").as_deref() {
+		Ok("android") => {
+			build.cpp_link_stdlib("c++_static");
+		}
+		Ok("windows") => {
+			build.cpp_link_stdlib("static=stdc++");
+		}
+		_ => {}
 	}
 
 	build.compile("libyoga.a");
