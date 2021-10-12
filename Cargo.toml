@@ -14,9 +14,9 @@ serde_support = ["serde", "serde_derive", "ordered-float/serde"]
 
 [build-dependencies]
 bindgen = "0.58.1"
-cc = "1.0.17"
+cc = "1.0.68"
 
 [dependencies]
-ordered-float = "1.0.1"
-serde = { version = "1.0.27", optional = true }
-serde_derive = { version = "1.0.27", optional = true }
+ordered-float = "2.5.1"
+serde = { version = "1.0.126", optional = true }
+serde_derive = { version = "1.0.126", optional = true }
